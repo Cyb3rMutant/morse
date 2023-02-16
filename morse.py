@@ -1,3 +1,6 @@
+import unittest
+
+
 class Binary_tree():
     def __init__(self, data: str = None) -> None:
         self.__data: str = data
@@ -26,18 +29,154 @@ class Binary_tree():
         return (self.__data)
 
     def print(self, indent: int = 0) -> None:
-        print("    "*indent, indent, self.__data)
 
         if self['.']:
             self['.'].print(indent+1)
 
+        print("    "*indent, indent, self.__data)
         if self['-']:
             self['-'].print(indent+1)
 
 
 class Morse():
-    def __init__(self, tree) -> None:
-        self.__tree = tree
+    def __init__(self) -> None:
+        self.__tree = Binary_tree("")
+
+        self.__tree.insert('E', ".")
+        self.__tree.insert('T', "-")
+
+        self.__tree.insert('I', "..")
+        self.__tree.insert('A', ".-")
+        self.__tree.insert('N', "-.")
+        self.__tree.insert('M', "--")
+
+        self.__tree.insert('S', "...")
+        self.__tree.insert('U', "..-")
+        self.__tree.insert('R', ".-.")
+        self.__tree.insert('W', ".--")
+        self.__tree.insert('D', "-..")
+        self.__tree.insert('K', "-.-")
+        self.__tree.insert('G', "--.")
+        self.__tree.insert('O', "---")
+
+        self.__tree.insert('H', "....")
+        self.__tree.insert('V', "...-")
+        self.__tree.insert('F', "..-.")
+        self.__tree.insert(' ', "..--")
+        self.__tree.insert('L', ".-..")
+        self.__tree.insert(' ', ".-.-")
+        self.__tree.insert('P', ".--.")
+        self.__tree.insert('J', ".---")
+        self.__tree.insert('B', "-...")
+        self.__tree.insert('X', "-..-")
+        self.__tree.insert('C', "-.-.")
+        self.__tree.insert('Y', "-.--")
+        self.__tree.insert('Z', "--..")
+        self.__tree.insert('Q', "--.-")
+        self.__tree.insert(' ', "---.")
+        self.__tree.insert(' ', "----")
+                
+        self.__tree.insert('5', ".....")
+        self.__tree.insert('4', "....-")
+        self.__tree.insert(' ', "...-.")
+        self.__tree.insert('3', "...--")
+        self.__tree.insert(' ', "..-..")
+        self.__tree.insert('¿', "..-.-")
+        self.__tree.insert('?', "..--.")
+        self.__tree.insert('2', "..---")
+        self.__tree.insert('&', ".-...")
+        self.__tree.insert(' ', ".-..-")
+        self.__tree.insert('+', ".-.-.")
+        self.__tree.insert(' ', ".-.--")
+        self.__tree.insert(' ', ".--..")
+        self.__tree.insert(' ', ".--.-")
+        self.__tree.insert(' ', ".---.")
+        self.__tree.insert('1', ".----")
+        self.__tree.insert('6', "-....")
+        self.__tree.insert(' ', "-...-")
+        self.__tree.insert(' ', "-..-.")
+        self.__tree.insert(' ', "-..--")
+        self.__tree.insert(' ', "-.-..")
+        self.__tree.insert(' ', "-.-.-")
+        self.__tree.insert('(', "-.--.")
+        self.__tree.insert(' ', "-.---")
+        self.__tree.insert('7', "--...")
+        self.__tree.insert(' ', "--..-")
+        self.__tree.insert(' ', "--.-.")
+        self.__tree.insert(' ', "--.--")
+        self.__tree.insert('8', "---..")
+        self.__tree.insert(' ', "---.-")
+        self.__tree.insert('9', "----.")
+        self.__tree.insert('0', "-----")
+
+        self.__tree.insert(' ', "......")
+        self.__tree.insert(' ', ".....-")
+        self.__tree.insert(' ', "....-.")
+        self.__tree.insert(' ', "....--")
+        self.__tree.insert(' ', "...-..")
+        self.__tree.insert(' ', "...-.-")
+        self.__tree.insert(' ', "...--.")
+        self.__tree.insert(' ', "...---")
+        self.__tree.insert(' ', "..-...")
+        self.__tree.insert(' ', "..-..-")
+        self.__tree.insert(' ', "..-.-.")
+        self.__tree.insert(' ', "..-.--")
+        self.__tree.insert(' ', "..--..")
+        self.__tree.insert('_', "..--.-")
+        self.__tree.insert(' ', "..---.")
+        self.__tree.insert(' ', "..----")
+        self.__tree.insert(' ', ".-....")
+        self.__tree.insert(' ', ".-...-")
+        self.__tree.insert('"', ".-..-.")
+        self.__tree.insert(' ', ".-..--")
+        self.__tree.insert(' ', ".-.-..")
+        self.__tree.insert('.', ".-.-.-")
+        self.__tree.insert(' ', ".-.--.")
+        self.__tree.insert(' ', ".-.---")
+        self.__tree.insert(' ', ".--...")
+        self.__tree.insert(' ', ".--..-")
+        self.__tree.insert(' ', ".--.-.")
+        self.__tree.insert(' ', ".--.--")
+        self.__tree.insert(' ', ".---..")
+        self.__tree.insert(' ', ".---.-")
+        self.__tree.insert("'", ".----.")
+        self.__tree.insert(' ', ".-----")
+        self.__tree.insert(' ', "-.....")
+        self.__tree.insert('-', "-....-")
+        self.__tree.insert(' ', "-...-.")
+        self.__tree.insert(' ', "-...--")
+        self.__tree.insert(' ', "-..-..")
+        self.__tree.insert(' ', "-..-.-")
+        self.__tree.insert(' ', "-..--.")
+        self.__tree.insert(' ', "-..---")
+        self.__tree.insert(' ', "-.-...")
+        self.__tree.insert(' ', "-.-..-")
+        self.__tree.insert(';', "-.-.-.")
+        self.__tree.insert('!', "-.-.--")
+        self.__tree.insert(' ', "-.--..")
+        self.__tree.insert(')', "-.--.-")
+        self.__tree.insert(' ', "-.---.")
+        self.__tree.insert(' ', "-.----")
+        self.__tree.insert(' ', "--....")
+        self.__tree.insert('¡', "--...-")
+        self.__tree.insert(' ', "--..-.")
+        self.__tree.insert(' ', "--..--")
+        self.__tree.insert(' ', "--.-..")
+        self.__tree.insert(' ', "--.-.-")
+        self.__tree.insert(' ', "--.--.")
+        self.__tree.insert(' ', "--.---")
+        self.__tree.insert(' ', "---...")
+        self.__tree.insert(' ', "---..-")
+        self.__tree.insert(' ', "---.-.")
+        self.__tree.insert(' ', "---.--")
+        self.__tree.insert(' ', "----..")
+        self.__tree.insert(' ', "----.-")
+        self.__tree.insert(' ', "-----.")
+        self.__tree.insert(' ', "------")
+        self.__tree.insert('$', "...-..-")
+
+
+        self.__tree.print()
 
     def __get_morse_encoding(self, node, char, code) -> str:
         if not node:
@@ -61,8 +200,6 @@ class Morse():
         node = self.__tree
 
         while len(code) > 1:
-            print(code, self.__tree)
-
             node = node[code[0]]
 
             code = code[1:]
@@ -76,40 +213,13 @@ class Morse():
         return decoded_message
 
 
-if __name__ == "__main__":
-    x = Binary_tree("")
+class TestSum(unittest.TestCase):
+    def test_encode_us(self):
+        self.assertEqual(morse.encode("US"), "..- ...")
 
-    print(x.insert('E', "."))
-    print(x.insert('T', "-"))
+    def test_decode_us(self):
+        self.assertEqual(morse.decode("..- ..."), "US")
 
-    print(x.insert('I', ".."))
-    print(x.insert('A', ".-"))
-    print(x.insert('N', "-."))
-    print(x.insert('M', "--"))
 
-    print(x.insert('S', "..."))
-    print(x.insert('U', "..-"))
-    print(x.insert('R', ".-."))
-    print(x.insert('W', ".--"))
-    print(x.insert('D', "-.."))
-    print(x.insert('K', "-.-"))
-    print(x.insert('G', "--."))
-    print(x.insert('O', "---"))
-
-    print(x.insert('H', "...."))
-    print(x.insert('V', "...-"))
-    print(x.insert('F', "..-."))
-    print(x.insert('L', ".-.."))
-    print(x.insert('P', ".--."))
-    print(x.insert('J', ".---"))
-    print(x.insert('B', "-..."))
-    print(x.insert('X', "-..-"))
-    print(x.insert('C', "-.-."))
-    print(x.insert('Y', "-.--"))
-    print(x.insert('Z', "--.."))
-    print(x.insert('Q', "--.-"))
-
-    x.print()
-    print("\n\n\n")
-    y = Morse(x)
-    print(y.decode("... --- -- . - .... .. -. --."))
+morse = Morse()
+unittest.main()
