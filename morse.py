@@ -39,24 +39,25 @@ class Morse():
     def __init__(self, tree) -> None:
         self.__tree = tree
 
-    def __getMorseCode(self, node, character, code):
+    def __get_morse_encoding(self, node, char, code) -> str:
         if not node:
-            return False
-        elif node == character:
-            return True
-        
+            return ''
+        elif node == char:
+            return code
+
         for side in ['.', '-']:
-            if self.__getMorseCode(node[side], character, code):
-                code.append(side)
-                return True
+            if x := self.__get_morse_encoding(node[side], char, side):
+                code += x
+                return code
 
-    def encode(self, char: str) -> str:
-        code = []
-        self.__getMorseCode(self.__tree, char, code)
-        code.reverse()
-        return ''.join(code)
+    def encode(self, message: str) -> str:
+        encoded_message: str = ''
+        for char in message:
+            encoded_message += self.__get_morse_encoding(
+                self.__tree, char, '') + ' '
+        return encoded_message[:-1]
 
-    def decode(self, code: str) -> str:
+    def __get_decoded_char(self, code: str) -> str:
         node = self.__tree
 
         while len(code) > 1:
@@ -66,7 +67,13 @@ class Morse():
 
             code = code[1:]
 
-        return node[code]
+        return str(node[code])
+
+    def decode(self, message: str) -> str:
+        decoded_message: str = ''
+        for code in message.split(" "):
+            decoded_message += self.__get_decoded_char(code)
+        return decoded_message
 
 
 if __name__ == "__main__":
@@ -105,8 +112,4 @@ if __name__ == "__main__":
     x.print()
     print("\n\n\n")
     y = Morse(x)
-    print(y.decode("-"))
-
-    code = []
-    print(y.encode( "E"))
-    print(*code)
+    print(y.decode("... --- -- . - .... .. -. --."))
