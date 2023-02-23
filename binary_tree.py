@@ -70,16 +70,7 @@ class Binary_tree():
             if node:
                 node.print(indent+1)
 
-    def __del__(self) -> None:
-        print("item %s deleted", self)
+    # def __del__(self) -> None:
+    #     print("item %s deleted", self)
 
-
-x = Binary_tree()
-x.insert('E', ".")
-x.insert('T', "-")
-x.insert('I', "..")
-x.insert('A', "...")
-x.print()
-x.delete("I")
-x.print()
-# print(x.find_elem(x.find_path("A")))
+bt = Binary_tree()
