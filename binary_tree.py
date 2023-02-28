@@ -12,7 +12,7 @@ class Binary_tree():
     def __str__(self) -> str:
         return str(self.__data)
 
-    def is_empty(self)->bool:
+    def is_empty(self) -> bool:
         for node in self.__sides.values():
             if node:
                 return False
@@ -63,6 +63,16 @@ class Binary_tree():
 
         return str(node[path])
 
+    def to_heap_array(self,):
+        q = [self]
+
+        for node in q:
+            for side in self.__sides.keys():
+                if node[side]:
+                    q.append(node[side])
+
+        return q
+
     def print(self, indent: int = 0) -> None:  # print the tree in preorder form
         print("\t"*indent, indent, self.__data)
 
@@ -72,5 +82,6 @@ class Binary_tree():
 
     # def __del__(self) -> None:
     #     print("item %s deleted", self)
+
 
 bt = Binary_tree()
