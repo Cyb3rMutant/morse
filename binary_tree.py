@@ -63,7 +63,7 @@ class Binary_tree():
 
         return str(node[path])
 
-    def to_heap_array(self,):
+    def to_array(self,):
         q = [self]
 
         for node in q:
