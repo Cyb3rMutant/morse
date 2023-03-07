@@ -39,7 +39,7 @@ class Morse():
         self.__tree.insert('Q', "--.-")
         self.__tree.insert('\0', "---.")
         self.__tree.insert('\0', "----")
-                
+
         self.__tree.insert('5', ".....")
         self.__tree.insert('4', "....-")
         self.__tree.insert('\0', "...-.")
@@ -57,7 +57,7 @@ class Morse():
         self.__tree.insert('\0', ".---.")
         self.__tree.insert('1', ".----")
         self.__tree.insert('6', "-....")
-        self.__tree.insert('\0', "-...-")
+        self.__tree.insert('=', "-...-")
         self.__tree.insert('\0', "-..-.")
         self.__tree.insert('\0', "-..--")
         self.__tree.insert('\0', "-.-..")
@@ -269,6 +269,7 @@ class Morse():
         self.__tree.print()
 
     def encode(self, message: str) -> str:
+        message = message.upper()
         encoded_message: str = ''
         for char in message:
             encoded_message += self.__tree.find_path(char) + ' '
@@ -282,12 +283,25 @@ class Morse():
             decoded_message += self.__tree.find_elem(code)
         return decoded_message
 
+    def encode_ham(self, sender: str, receiver: str, msg: str) -> str:
+        return self.encode(f"{receiver}DE{sender}={msg}=(")
+
+    def decode_ham(self, msg: str):
+        msg = self.decode(msg)
+        print(msg)
+        de = msg.find("DE")
+        eq = msg.find("=")
+        print(de)
+        print(eq)
+        receiver = msg[:de]
+        sender = msg[de+2:eq]
+        msg = msg[eq+1:-2]
+        return sender, receiver, msg
+
     def to_array(self):
         return self.__tree.to_array()
 
 
 morse = Morse()
-# print(morse.encode("$$"))
-# print([str(n) for n in morse.to_array()])
-# print("hello")
-# print(morse.decode(""))
+print(morse.encode_ham("s1", "r1", "hi"))
+print(morse.decode_ham(".-. .---- -.. . ... .---- -...- .... .. -...- -.--."))
