@@ -30,6 +30,17 @@ async def echo(websocket, message, client_id):
     return response
 
 
+async def time(websocket, message, client_id):
+    await send_message(websocket, message, client_id)
+
+    response = morse.decode_ham(await recv_message(websocket))
+
+    print("The Server Sent Back: ")
+    print(response)
+
+    return response
+
+
 async def read_message():
     message = input("message: ")
     return message
@@ -47,7 +58,9 @@ async def main():
         client_id = message["client_id"]
 
         user_message = await read_message()
-        while (await echo(websocket, morse.encode_ham("user", "echo", user_message), client_id) != "end"):
+        while (user_message != "end"):
+            await echo(websocket, morse.encode_ham("user", "echo", user_message), client_id) 
+            await time(websocket, morse.encode_ham("user", "time", user_message), client_id) 
             user_message = await read_message()
 
 if __name__ == "__main__":
