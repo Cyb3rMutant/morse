@@ -58,20 +58,49 @@ class TestSum(unittest.TestCase):
     def test_018_morse_encode_fail_2(self):
         self.assertEqual(morse.encode("U"), "..- ...")
 
-    def test_019_morse_decode_us(self):
+    def test_019_morse_encode_lowercase(self):
+        self.assertEqual(morse.encode("hello"), ".... . .-.. .-.. ---")
+
+    def test_020_morse_encode_numbers(self):
+        self.assertEqual(morse.encode("122"), ".---- ..--- ...--")
+
+    def test_021_morse_encode_special_chars(self):
+        self.assertEqual(morse.encode('.,?\'!()&:;+-_\"$¿¡'),
+                         ".-.-.- --..-- ..--. .----. -.-.-- -.--. -.--.- .-... ---... -.-.-. .-.-. -....- ..--.- .-..-. ...-..- ..-.- --...-")
+    def test_022_morse_encode_long_sentence(self):
+        self.assertEqual(morse.encode("THEQUICKBROWNFOXJUMPSOVERTHELAZYDOG"), "- .... .  --.- ..- .. -.-. -.-  -... .-. --- .-- -.  ..-. --- -..-  .--- ..- -- .--. ...  --- ...- . .-.  - .... .  .-.. .- --.. -.--  -.. --- --.")
+
+
+    def test_023_morse_encode_mixed(self):
+        self.assertEqual(morse.encode("HeLLo123!"),
+                         ".... . .-.. .-.. ---  .---- ..--- ...-- -.-.--")
+
+    def test_024_morse_decode_us(self):
         self.assertEqual(morse.decode("..- ..."), "US")
 
-    def test_020_morse_decode_hello(self):
+    def test_025_morse_decode_hello(self):
         self.assertEqual(morse.decode(".... . .-.. .-.. ---"), "HELLO")
 
-    def test_021_morse_decode_(self):
+    def test_026_morse_decode_(self):
         self.assertEqual(morse.decode(""), "")
 
-    def test_022_morse_decode_fail_1(self):
+    def test_027_morse_decode_fail_1(self):
         self.assertEqual(morse.decode("..-"), "US")
 
-    def test_023_morse_decode_fail_2(self):
+    def test_028_morse_decode_fail_2(self):
         self.assertEqual(morse.decode("..- ..."), "U")
 
+    def test_029_morse_decode_lowercase(self):
+        self.assertEqual(morse.decode(".... . .-.. .-.. ---"), "HELLO")
+
+    def test_030_morse_decode_numbers(self):
+        self.assertEqual(morse.decode(".---- ..--- ...--"), "123")
+
+    def test_031_morse_decode_special_chars(self):
+        self.assertEqual(morse.decode(
+            ".-.-.- --..-- ..--. .----. -.-.-- -.--. -.--.- .-... ---... -.-.-. .-.-. -....- ..--.- .-..-. ...-..- ..-.- --...-"), '.,?\'!()&:;+-_\"$¿¡')
+
+    def test_032_morse_decode_long_sentence(self):
+        self.assertEqual(morse.decode("- .... .  --.- ..- .. -.-. -.-  -... .-. --- .-- -.  ..-. --- -..-  .--- ..- -- .--. ...  --- ...- . .-.  - .... .  .-.. .- --.. -.--  -.. --- --."), "THEQUICKBROWNFOXJUMPSOVERTHELAZYDOG")
 
 unittest.main()

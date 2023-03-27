@@ -124,12 +124,12 @@ class Morse():
         self.__tree.insert('\0', "--....")
         self.__tree.insert('¡', "--...-")
         self.__tree.insert('\0', "--..-.")
-        self.__tree.insert('\0', "--..--")
+        self.__tree.insert(',', "--..--")
         self.__tree.insert('\0', "--.-..")
         self.__tree.insert('\0', "--.-.-")
         self.__tree.insert('\0', "--.--.")
         self.__tree.insert('\0', "--.---")
-        self.__tree.insert('\0', "---...")
+        self.__tree.insert(':', "---...")
         self.__tree.insert('\0', "---..-")
         self.__tree.insert('\0', "---.-.")
         self.__tree.insert('\0', "---.--")
@@ -286,7 +286,7 @@ class Morse():
     def encode_ham(self, sender: str, receiver: str, msg: str) -> str:
         return self.encode(f"{receiver}DE{sender}={msg}=(")
 
-    def decode_ham(self, msg: str):
+    def decode_ham(self, msg: str) -> [str]:
         msg = self.decode(msg)
         print(msg)
         de = msg.find("DE")
@@ -303,5 +303,4 @@ class Morse():
 
 
 morse = Morse()
-print(morse.encode_ham("s1", "r1", "hi"))
-print(morse.decode_ham(".-. .---- -.. . ... .---- -...- .... .. -...- -.--."))
+print(morse.decode(".-.-.- --..-- ..--. .----. -.-.-- -.--.  -.--.- .-... ---... -.-.-. .-.-. -....- ..--.- .-..-. ...-..- ..-.- --...-"))
