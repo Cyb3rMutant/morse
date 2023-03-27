@@ -8,9 +8,6 @@ class Heap():
     def is_empty(self) -> bool:
         return len(self.__array) == 0
 
-    def find_path(self, elem) -> str:
-        pass
-
     def find_elem(self, path) -> str:
         idx : int = 0
         while len(path):
@@ -29,4 +26,3 @@ class Heap():
 
 
 morse_heap = Heap(morse.to_array())
-print(morse_heap.decode(".. -- .- -. -.-. .-.- ..-- --.."))

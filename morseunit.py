@@ -1,6 +1,7 @@
 import unittest
 from morse import morse
 from binary_tree import bt
+from heap import morse_heap
 
 
 class TestSum(unittest.TestCase):
@@ -67,13 +68,13 @@ class TestSum(unittest.TestCase):
     def test_021_morse_encode_special_chars(self):
         self.assertEqual(morse.encode('.,?\'!()&:;+-_\"$¿¡'),
                          ".-.-.- --..-- ..--. .----. -.-.-- -.--. -.--.- .-... ---... -.-.-. .-.-. -....- ..--.- .-..-. ...-..- ..-.- --...-")
-    def test_022_morse_encode_long_sentence(self):
-        self.assertEqual(morse.encode("THEQUICKBROWNFOXJUMPSOVERTHELAZYDOG"), "- .... .  --.- ..- .. -.-. -.-  -... .-. --- .-- -.  ..-. --- -..-  .--- ..- -- .--. ...  --- ...- . .-.  - .... .  .-.. .- --.. -.--  -.. --- --.")
 
-
-    def test_023_morse_encode_mixed(self):
+    def test_022_morse_encode_mixed(self):
         self.assertEqual(morse.encode("HeLLo123!"),
                          ".... . .-.. .-.. ---  .---- ..--- ...-- -.-.--")
+
+    def test_023_morse_encode_long_sentence(self):
+        self.assertEqual(morse.encode("THEQUICKBROWNFOXJUMPSOVERTHELAZYDOG"), "- .... .  --.- ..- .. -.-. -.-  -... .-. --- .-- -.  ..-. --- -..-  .--- ..- -- .--. ...  --- ...- . .-.  - .... .  .-.. .- --.. -.--  -.. --- --.")
 
     def test_024_morse_decode_us(self):
         self.assertEqual(morse.decode("..- ..."), "US")
@@ -102,5 +103,33 @@ class TestSum(unittest.TestCase):
 
     def test_032_morse_decode_long_sentence(self):
         self.assertEqual(morse.decode("- .... .  --.- ..- .. -.-. -.-  -... .-. --- .-- -.  ..-. --- -..-  .--- ..- -- .--. ...  --- ...- . .-.  - .... .  .-.. .- --.. -.--  -.. --- --."), "THEQUICKBROWNFOXJUMPSOVERTHELAZYDOG")
+
+    def test_033_morse_heap_decode_us(self):
+        self.assertEqual(morse_heap.decode("..- ..."), "US")
+
+    def test_034_morse_heap_decode_hello(self):
+        self.assertEqual(morse_heap.decode(".... . .-.. .-.. ---"), "HELLO")
+
+    def test_035_morse_heap_decode_(self):
+        self.assertEqual(morse_heap.decode(""), "")
+
+    def test_036_morse_heap_decode_fail_1(self):
+        self.assertEqual(morse_heap.decode("..-"), "US")
+
+    def test_037_morse_heap_decode_fail_2(self):
+        self.assertEqual(morse_heap.decode("..- ..."), "U")
+
+    def test_038_morse_heap_decode_lowercase(self):
+        self.assertEqual(morse_heap.decode(".... . .-.. .-.. ---"), "HELLO")
+
+    def test_039_morse_heap_decode_numbers(self):
+        self.assertEqual(morse_heap.decode(".---- ..--- ...--"), "123")
+
+    def test_040_morse_heap_decode_special_chars(self):
+        self.assertEqual(morse_heap.decode(
+            ".-.-.- --..-- ..--. .----. -.-.-- -.--. -.--.- .-... ---... -.-.-. .-.-. -....- ..--.- .-..-. ...-..- ..-.- --...-"), '.,?\'!()&:;+-_\"$¿¡')
+
+    def test_041_morse_heap_decode_long_sentence(self):
+        self.assertEqual(morse_heap.decode("- .... .  --.- ..- .. -.-. -.-  -... .-. --- .-- -.  ..-. --- -..-  .--- ..- -- .--. ...  --- ...- . .-.  - .... .  .-.. .- --.. -.--  -.. --- --."), "THEQUICKBROWNFOXJUMPSOVERTHELAZYDOG")
 
 unittest.main()
