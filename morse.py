@@ -1,10 +1,11 @@
+from typing import List
 from binary_tree import Binary_tree
+from heap import Heap
 
 
 class Morse():
     def __init__(self) -> None:
-        self.__tree = Binary_tree()
-        self.__tree = Binary_tree("")
+        self.__tree = Binary_tree("\0")
 
         self.__tree.insert('E', ".")
         self.__tree.insert('T', "-")
@@ -268,10 +269,15 @@ class Morse():
         self.__tree.insert('\0', "-------")
         self.__tree.print()
 
+        self.__morse_heap = Heap(self.to_array())
+
     def encode(self, message: str) -> str:
         message = message.upper()
         encoded_message: str = ''
         for char in message:
+            if char == ' ':
+                encoded_message += '/ '
+                continue
             encoded_message += self.__tree.find_path(char) + ' '
         return encoded_message[:-1]
 
@@ -280,19 +286,22 @@ class Morse():
         for code in message.split(" "):
             if not code:
                 continue
+            if code == '/':
+                decoded_message += ' '
+                continue
             decoded_message += self.__tree.find_elem(code)
         return decoded_message
+
+    def decode_heap(self, message: str) -> str:
+        return self.__morse_heap.decode(message)
 
     def encode_ham(self, sender: str, receiver: str, msg: str) -> str:
         return self.encode(f"{receiver}DE{sender}={msg}=(")
 
-    def decode_ham(self, msg: str) -> [str]:
-        msg = self.decode(msg)
-        print(msg)
+    def decode_ham(self, msg: str) -> List[str]:
+        msg = self.decode_heap(msg)
         de = msg.find("DE")
         eq = msg.find("=")
-        print(de)
-        print(eq)
         receiver = msg[:de]
         sender = msg[de+2:eq]
         msg = msg[eq+1:-2]
@@ -303,4 +312,3 @@ class Morse():
 
 
 morse = Morse()
-print(morse.decode(".-.-.- --..-- ..--. .----. -.-.-- -.--.  -.--.- .-... ---... -.-.-. .-.-. -....- ..--.- .-..-. ...-..- ..-.- --...-"))

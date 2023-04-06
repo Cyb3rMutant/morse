@@ -19,24 +19,20 @@ async def recv_message(websocket):
     return message['payload']
 
 
-async def echo(websocket, message, client_id):
+async def echo(websocket, user, message, client_id):
+    message = morse.encode_ham(user, "echo", message)
     await send_message(websocket, message, client_id)
 
     response = morse.decode_ham(await recv_message(websocket))
-
-    print("The Server Sent Back: ")
-    print(response)
 
     return response
 
 
-async def time(websocket, message, client_id):
+async def time(websocket, user, message,  client_id):
+    message = morse.encode_ham(user, "time", message)
     await send_message(websocket, message, client_id)
 
     response = morse.decode_ham(await recv_message(websocket))
-
-    print("The Server Sent Back: ")
-    print(response)
 
     return response
 
@@ -59,8 +55,8 @@ async def main():
 
         user_message = await read_message()
         while (user_message != "end"):
-            await echo(websocket, morse.encode_ham("user", "echo", user_message), client_id) 
-            await time(websocket, morse.encode_ham("user", "time", user_message), client_id) 
+            print(await echo(websocket, "user", user_message, client_id))
+            print(await time(websocket, "user", user_message, client_id))
             user_message = await read_message()
 
 if __name__ == "__main__":

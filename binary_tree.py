@@ -80,8 +80,12 @@ class Binary_tree():
             if node:
                 node.print(indent+1)
 
-    # def __del__(self) -> None:
-    #     print("item %s deleted", self)
-
 
 bt = Binary_tree()
+
+bt.insert("a", ".")
+bt.insert("b", "-")
+bt.insert("c", "--")
+bt.insert("d", ".-")
+bt.delete("b")
+bt.print()
