@@ -82,10 +82,3 @@ class Binary_tree():
 
 
 bt = Binary_tree()
-
-bt.insert("a", ".")
-bt.insert("b", "-")
-bt.insert("c", "--")
-bt.insert("d", ".-")
-bt.delete("b")
-bt.print()
