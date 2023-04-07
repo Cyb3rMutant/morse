@@ -93,6 +93,8 @@ bt = Binary_tree()
   - Specifically, for each character in the path string, it checks whether the character indicates that the next node is to the left or the right of the current node. It then sets the node variable to the next node in that direction.
   - When it reaches the end of the path string, it returns the value of the node it has reached as a string.
 
+  ![pre-order traversal](photos/Preorder-Traversal.png)
+
 - **Converting to an array**
 
   To convert the tree to a binary heap array, you can use the `to_array` method.
@@ -106,6 +108,8 @@ bt = Binary_tree()
   ```
 
   The method uses a queue to do the search, but rather than dequeueing items, it simply moves the index forward by one, and with each iteration it appends the children of the node at the current index, until we reach a node with node left child, because at that point we know we have reached the end of the list, since the trees we will be using are perfect binary trees.
+
+  ![pre-order traversal](photos/Levelorder-Traversal.png)
 
 - **Printing the tree**
 
