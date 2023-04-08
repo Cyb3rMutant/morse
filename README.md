@@ -284,7 +284,7 @@ python morse_server.py
 
 - **read_message()**
 
-This function prompts the user to input a message using the `input()` function and returns the user's input as a string.
+  This function prompts the user to input a message using the `input()` function and returns the user's input as a string.
 
 - **echo(websocket, user, message, client_id)**
 
@@ -296,4 +296,4 @@ This function prompts the user to input a message using the `input()` function a
 
 - **send_message(websocket, message, client_id)**
 
-This function takes three arguments: `websocket`, which is the WebSocket connection object, `message`, which is the message to send to the server, and `client_id`, which is the unique identifier for the client. The function creates an outbound message object with the `message` payload and `client_id` and sends it to the server using the `websocket.send()` method.
+  This function takes three arguments: `websocket`, which is the WebSocket connection object, `message`, which is the message to send to the server, and `client_id`, which is the unique identifier for the client. The function creates an outbound message object with the `message` payload and `client_id` and sends it to the server using the `websocket.send()` method.
